@@ -1,7 +1,7 @@
 import './App.css';
 import { useWeatherStore } from './store/weatherStore.js';
 
-import { Typography } from '@mui/material';
+import { Typography, Box } from '@mui/material';
 import Dashboard from './components/Dashboard/Dashboard';
 import NavBar from './components/NavBar/NavBar';
 import Search from './components/Search/Search.jsx';
@@ -13,17 +13,19 @@ export const App = () => {
         <>
             <NavBar />
             {weatherInfo === null ? (
-                <Typography
-                    variant='h4'
+                <Box
                     sx={{
-                        paddingTop: 4,
-                        marginLeft: 60,
-                        marginRight: 60,
-                        paddingBottom: 78,
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        width: '100%',
+                        height: '75vh',
                     }}
                 >
-                    Select a city to get started!
-                </Typography>
+                    <Typography variant='h2'>
+                        Select a city to get started!
+                    </Typography>
+                </Box>
             ) : (
                 <>
                     <Search />
