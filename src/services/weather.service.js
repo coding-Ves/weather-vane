@@ -4,8 +4,6 @@ import {
     WEATHER_STATION_ID,
 } from '../common/constants';
 
-// export const getCoordsByCityName = async (string) => {};
-
 // Get the weather information for given coordinates
 export const fetchWeatherByCoords = async (lat, lon) => {
     const requestUrl =
@@ -110,11 +108,3 @@ export const switchDefaultIcons = (icon) => {
             break;
     }
 };
-
-// get all default city data
-
-// get previous day data
-
-// get autocomplete results
-
-//

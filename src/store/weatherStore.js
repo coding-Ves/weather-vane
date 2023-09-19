@@ -9,7 +9,6 @@ export const useWeatherStore = create((set) => ({
     setCoords: (latitude, longitude) =>
         set((state) => ({ currentCoords: { lat: latitude, lon: longitude } })),
 
-    // TODO: REMOVE TEST DATA
     weatherInfo: null,
 
     setWeatherInfo: (data) => set((state) => ({ weatherInfo: data })),
