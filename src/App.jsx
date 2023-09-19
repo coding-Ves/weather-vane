@@ -22,7 +22,7 @@ export const App = () => {
                         paddingBottom: 78,
                     }}
                 >
-                    Search for a city to find the weather!
+                    Select a city to get started!
                 </Typography>
             ) : (
                 <>
