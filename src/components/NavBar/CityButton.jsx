@@ -14,7 +14,6 @@ const buttonStyle = {
     height: '60px',
     borderColor: '#fff',
     backgroundRepeat: 'no-repeat',
-    backgroundSize: '400px',
     backgroundPosition: 'center',
     backgroundBlendMode: 'darken',
     bgcolor: 'rgba(130, 130, 130, 0.80)',
