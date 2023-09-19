@@ -14,6 +14,7 @@
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.14.9",
     "@mui/material": "^5.14.9",
+    "@reduxjs/toolkit": "^1.9.5",
     "@types/prop-types": "^15.7.6",
     "moment": "^2.29.4",
     "prop-types": "^15.8.1",
