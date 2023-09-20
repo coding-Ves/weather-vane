@@ -1,11 +1,11 @@
 import { Box, Card, Paper, Typography, Divider } from '@mui/material';
 import moment from 'moment/moment';
 import { switchDefaultIcons } from '../../services/weather.service';
-import { useWeatherStore } from '../../store/weatherStore';
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 
 const HourlyWeatherSingle = ({ singleHourData }) => {
-    const weatherInfo = useWeatherStore((state) => state.weatherInfo);
+    const weatherInfo = useSelector((state) => state.weatherInfoSlice.value);
 
     const date = moment
         .unix(singleHourData.dt)

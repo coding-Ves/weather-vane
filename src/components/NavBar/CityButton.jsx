@@ -1,8 +1,11 @@
 import { Button } from '@mui/material';
 import * as coordinateConstants from '/src/common/constants';
 import { fetchWeatherByCoords } from '../../services/weather.service';
-import { useWeatherStore } from '../../store/weatherStore';
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+import { updateCurrentCity } from '../../redux/slices/currentCitySlice';
+import { updateCurrentCoords } from '../../redux/slices/currentCoordsSlice';
+import { updateWeatherInfo } from '../../redux/slices/weatherInfoSlice';
 
 const buttonStyle = {
     fontSize: '18px',
@@ -38,15 +41,16 @@ const buttonStyle = {
 };
 
 const CityButton = ({ backgroundImage, cityName }) => {
-    const setWeatherInfo = useWeatherStore((state) => state.setWeatherInfo);
-    const setCurrentCity = useWeatherStore((state) => state.setCurrentCity);
-    const setCoords = useWeatherStore((state) => state.setCoords);
+    const dispatch = useDispatch();
 
     const handleClick = () => {
-        setCoords(coords.lat, coords.lon);
-        setCurrentCity(cityName);
+        dispatch(updateCurrentCoords({ lat: coords.lat, lon: coords.lon }));
+        dispatch(updateCurrentCity(cityName));
+
         fetchWeatherByCoords(coords.lat, coords.lon)
-            .then((data) => setWeatherInfo(data))
+            .then((data) => {
+                dispatch(updateWeatherInfo(data));
+            })
             .catch((error) => console.log(error));
     };
 

@@ -36,7 +36,7 @@ function a11yProps(index) {
     };
 }
 
-export default function Dashboard() {
+const Dashboard = () => {
     const [value, setValue] = React.useState(0);
 
     const handleChange = (event, newValue) => {
@@ -119,4 +119,6 @@ export default function Dashboard() {
             </CustomTabPanel>
         </Box>
     );
-}
+};
+
+export default Dashboard;

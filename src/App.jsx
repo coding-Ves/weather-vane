@@ -1,17 +1,18 @@
 import './App.css';
-import { useWeatherStore } from './store/weatherStore.js';
-
 import { Typography, Box } from '@mui/material';
 import Dashboard from './components/Dashboard/Dashboard';
 import NavBar from './components/NavBar/NavBar';
 import Search from './components/Search/Search.jsx';
+import { useSelector } from 'react-redux';
 
 export const App = () => {
-    const weatherInfo = useWeatherStore((state) => state.weatherInfo);
+    // const weatherInfo = useWeatherStore((state) => state.weatherInfo);
+    const weatherInfo = useSelector((state) => state.weatherInfoSlice.value);
 
     return (
         <>
             <NavBar />
+            <Search />
             {weatherInfo === null ? (
                 <Box
                     sx={{
@@ -28,7 +29,6 @@ export const App = () => {
                 </Box>
             ) : (
                 <>
-                    <Search />
                     <Dashboard />
                 </>
             )}

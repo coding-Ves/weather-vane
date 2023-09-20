@@ -1,9 +1,10 @@
-import { useWeatherStore } from '../../store/weatherStore';
 import DailyWeatherSingle from './DailyWeatherSingle';
 import { Box } from '@mui/material';
+import { useSelector } from 'react-redux';
 
 const DailyWeather = () => {
-    const weatherInfo = useWeatherStore((state) => state.weatherInfo);
+    const weatherInfo = useSelector((state) => state.weatherInfoSlice.value);
+
     return (
         <Box
             sx={{

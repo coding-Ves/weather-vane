@@ -5,11 +5,12 @@ import WbTwilightRoundedIcon from '@mui/icons-material/WbTwilightRounded';
 import { Box, Card, Paper, Typography } from '@mui/material';
 import moment from 'moment/moment';
 import { switchDefaultIcons } from '../../services/weather.service';
-import { useWeatherStore } from '../../store/weatherStore';
+import { useSelector } from 'react-redux';
 
 const CurrentWeather = () => {
-    const currentCity = useWeatherStore((state) => state.currentCity);
-    const weatherInfo = useWeatherStore((state) => state.weatherInfo);
+    const weatherInfo = useSelector((state) => state.weatherInfoSlice.value);
+    const currentCity = useSelector((state) => state.currentCitySlice.value);
+
     const weatherImage = switchDefaultIcons(
         weatherInfo.current.weather[0].icon
     );

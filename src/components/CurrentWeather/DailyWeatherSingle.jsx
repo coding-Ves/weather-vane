@@ -1,11 +1,11 @@
 import { Box, Card, Paper, Tooltip, Typography } from '@mui/material';
 import moment from 'moment/moment';
 import { switchDefaultIcons } from '../../services/weather.service';
-import { useWeatherStore } from '../../store/weatherStore';
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 
 const DailyWeatherSingle = ({ singleDay }) => {
-    const weatherInfo = useWeatherStore((state) => state.weatherInfo);
+    const weatherInfo = useSelector((state) => state.weatherInfoSlice.value);
 
     const dayOfTheWeek = moment
         .unix(singleDay.dt)
@@ -80,7 +80,6 @@ const DailyWeatherSingle = ({ singleDay }) => {
                         position: 'relative',
                     }}
                 >
-                    {console.log(date, tomorrow, today)}
                     {date == today ? (
                         <Typography
                             variant='h6'
