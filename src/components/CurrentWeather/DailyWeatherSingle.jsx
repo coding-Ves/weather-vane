@@ -1,49 +1,14 @@
 import { Box, Card, Paper, Tooltip, Typography } from '@mui/material';
-import moment from 'moment/moment';
-import { switchDefaultIcons } from '../../services/weather.service';
-import { useWeatherStore } from '../../store/weatherStore';
 import PropTypes from 'prop-types';
+import { transformDailyInfo } from '../../helpers/transformWeatherData';
+import { useSelector } from 'react-redux';
 
-const DailyWeatherSingle = ({ singleDay }) => {
-    const weatherInfo = useWeatherStore((state) => state.weatherInfo);
-
-    const dayOfTheWeek = moment
-        .unix(singleDay.dt)
-        .utcOffset(weatherInfo.timezone_offset / 60)
-        .format('ddd');
-
-    const date = moment.unix(singleDay.dt).format('DD/MM/YYYY');
-    const minTemp = singleDay.temp.min.toFixed(0);
-    const maxTemp = singleDay.temp.max.toFixed(0);
-    const description = singleDay.weather[0].main.toUpperCase();
-    const weatherImage = switchDefaultIcons(singleDay.weather[0].icon);
-    const sunriseMilliseconds = singleDay.sunrise;
-    const sunsetMilliseconds = singleDay.sunset;
-    const windspeed = singleDay.wind_speed.toFixed(0);
-
-    let rainChance = '';
-    if (singleDay.rain) {
-        rainChance = singleDay.rain + ' ' + '%';
-    } else {
-        rainChance = 'no data';
-    }
-
-    const sunrise = moment
-        .unix(sunriseMilliseconds)
-        .utcOffset(weatherInfo.timezone_offset / 60)
-        .format('HH:mm');
-    const sunset = moment
-        .unix(sunsetMilliseconds)
-        .utcOffset(weatherInfo.timezone_offset / 60)
-        .format('HH:mm');
-
-    const today = moment().endOf('day').format('DD/MM/YYYY');
-    const tomorrow = moment().add(1, 'day').endOf('day').format('DD/MM/YYYY');
-
-    const extraInfo = ` Rain Chance:  ${rainChance} 🌧
-    Windspeed: ${windspeed} m/s 🍃
-     Sunrise : ${sunrise} 🌅
-    Sunset: ${sunset} 🌇 `;
+const DailyWeatherSingle = (singleDayRaw) => {
+    const weatherInfo = useSelector((state) => state.weatherInfoSlice.value);
+    const singleDay = transformDailyInfo(
+        singleDayRaw,
+        weatherInfo.timezone_offset
+    );
 
     const customPopperProps = {
         style: {
@@ -68,7 +33,7 @@ const DailyWeatherSingle = ({ singleDay }) => {
             }}
         >
             <Tooltip
-                title={extraInfo}
+                title={singleDay.extraInfo}
                 PopperProps={customPopperProps}
                 sx={{ position: 'absolute', top: 0, right: 2 }}
             >
@@ -80,15 +45,14 @@ const DailyWeatherSingle = ({ singleDay }) => {
                         position: 'relative',
                     }}
                 >
-                    {console.log(date, tomorrow, today)}
-                    {date == today ? (
+                    {singleDay.date == singleDay.today ? (
                         <Typography
                             variant='h6'
                             sx={{ fontWeight: 500, marginTop: 2 }}
                         >
                             TODAY
                         </Typography>
-                    ) : date == tomorrow ? (
+                    ) : singleDay.date == singleDay.tomorrow ? (
                         <Typography
                             variant='h6'
                             sx={{ fontWeight: 500, marginTop: 2 }}
@@ -98,12 +62,14 @@ const DailyWeatherSingle = ({ singleDay }) => {
                     ) : (
                         <Box sx={{ padding: 3 }}></Box>
                     )}
-                    <Typography variant='h6'>{dayOfTheWeek}</Typography>
-                    <Typography variant='button'>{date}</Typography>
+                    <Typography variant='h6'>
+                        {singleDay.dayOfTheWeek}
+                    </Typography>
+                    <Typography variant='button'>{singleDay.date}</Typography>
 
                     <Card
                         component='img'
-                        src={weatherImage}
+                        src={singleDay.weatherImage}
                         style={{
                             height: '100px',
                             width: '100px',
@@ -113,7 +79,9 @@ const DailyWeatherSingle = ({ singleDay }) => {
                             padding: 10,
                         }}
                     />
-                    <Typography variant='button'>{description}</Typography>
+                    <Typography variant='button'>
+                        {singleDay.description}
+                    </Typography>
                 </Box>
 
                 <Box
@@ -124,8 +92,8 @@ const DailyWeatherSingle = ({ singleDay }) => {
                         marginBottom: 1,
                     }}
                 >
-                    <Typography>Low: {minTemp} °C</Typography>
-                    <Typography>High: {maxTemp} °C</Typography>
+                    <Typography>Low: {singleDay.minTemp} °C</Typography>
+                    <Typography>High: {singleDay.maxTemp} °C</Typography>
                 </Box>
             </Tooltip>
         </Paper>

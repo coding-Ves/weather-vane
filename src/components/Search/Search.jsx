@@ -1,19 +1,21 @@
 import { useState } from 'react';
 import { Autocomplete, TextField, IconButton, Box } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
-import { useWeatherStore } from '../../store/weatherStore';
 import { fetchWeatherByCoords } from '../../services/weather.service';
-import { SEARCH_RESULT_LIMIT } from '../../common/constants';
-
-const API_KEY = import.meta.env.VITE_OPENWEATHER_API_KEY;
-const API_URL = 'https://api.openweathermap.org/geo/1.0/direct';
+import {
+    OPEN_WEATHER_GEOCODING_SEARCH,
+    SEARCH_RESULT_LIMIT,
+} from '../../common/constants';
+import { updateCurrentCity } from '../../redux/slices/currentCitySlice';
+import { updateCurrentCoords } from '../../redux/slices/currentCoordsSlice';
+import { updateWeatherInfo } from '../../redux/slices/weatherInfoSlice';
+import { updateLoading } from '../../redux/slices/loadingSlice';
+import { useDispatch } from 'react-redux';
 
 export const Search = () => {
+    const dispatch = useDispatch();
     const [query, setQuery] = useState('');
     const [results, setResults] = useState([]);
-    const setCurrentCity = useWeatherStore((state) => state.setCurrentCity);
-    const setCoords = useWeatherStore((state) => state.setCoords);
-    const setWeatherInfo = useWeatherStore((state) => state.setWeatherInfo);
 
     const handleSearch = async (value) => {
         setQuery(value);
@@ -21,7 +23,9 @@ export const Search = () => {
         if (value.length >= 3) {
             try {
                 const response = await fetch(
-                    `${API_URL}?q=${value}&limit=${SEARCH_RESULT_LIMIT}&appid=${API_KEY}`
+                    `${OPEN_WEATHER_GEOCODING_SEARCH}?q=${value}&limit=${SEARCH_RESULT_LIMIT}&appid=${
+                        import.meta.env.VITE_OPENWEATHER_API_KEY
+                    }`
                 );
 
                 if (response.ok) {
@@ -39,11 +43,19 @@ export const Search = () => {
     };
 
     const handleResultClick = (result) => {
-        setCoords(result.lat, result.lon);
-        setCurrentCity(result.name);
+        dispatch(updateLoading(true));
+        dispatch(updateCurrentCoords({ lat: result.lat, lon: result.lon }));
+        dispatch(updateCurrentCity(result.name));
         fetchWeatherByCoords(result.lat, result.lon)
-            .then((data) => setWeatherInfo(data))
-            .catch((error) => console.log(error));
+            .then((data) =>
+                dispatch(updateWeatherInfo(data)).then(() =>
+                    dispatch(updateLoading(false))
+                )
+            )
+            .catch((error) => {
+                dispatch(updateLoading(false));
+                console.log(error);
+            });
     };
 
     return (

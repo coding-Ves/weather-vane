@@ -5,9 +5,16 @@ export const OPEN_WEATHER_BASE_URL =
 export const OPEN_WEATHER_SUBMIT_DATA_URL =
     'http://api.openweathermap.org/data/3.0/measurements';
 
+export const OPEN_WEATHER_GEOCODING_SEARCH =
+    'https://api.openweathermap.org/geo/1.0/direct';
+
 export const SEARCH_RESULT_LIMIT = 5;
 
 export const WEATHER_STATION_ID = '607da83509e7430001b9e5a0';
+
+// CALCULATIONS
+
+export const ONE_DAY_MILLISECONDS = 8640000000;
 
 // COORDINATES
 

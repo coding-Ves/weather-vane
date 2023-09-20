@@ -1,26 +1,13 @@
-import { Box, Card, Paper, Typography, Divider } from '@mui/material';
-import moment from 'moment/moment';
-import { switchDefaultIcons } from '../../services/weather.service';
-import { useWeatherStore } from '../../store/weatherStore';
-import PropTypes from 'prop-types';
+import { Box, Card, Divider, Paper, Typography } from '@mui/material';
+import { useSelector } from 'react-redux';
+import { transformHourlyInfo } from '../../helpers/transformWeatherData';
 
-const HourlyWeatherSingle = ({ singleHourData }) => {
-    const weatherInfo = useWeatherStore((state) => state.weatherInfo);
-
-    const date = moment
-        .unix(singleHourData.dt)
-        .utcOffset(weatherInfo.timezone_offset / 60)
-        .format('DD/MM/YYYY');
-    const hour = moment
-        .unix(singleHourData.dt)
-        .utcOffset(weatherInfo.timezone_offset / 60)
-        .format('HH:mm');
-    const temp = singleHourData.temp.toFixed(0);
-    const feelsLike = singleHourData.feels_like;
-    const pressure = singleHourData.pressure;
-    const windspeed = singleHourData.wind_speed.toFixed(0);
-    const humidity = singleHourData.humidity;
-    const weatherImage = switchDefaultIcons(singleHourData.weather[0].icon);
+const HourlyWeatherSingle = (singleHourDataRaw) => {
+    const weatherInfo = useSelector((state) => state.weatherInfoSlice.value);
+    const singleHourData = transformHourlyInfo(
+        singleHourDataRaw,
+        weatherInfo.timezone_offset
+    );
 
     return (
         <Paper
@@ -45,18 +32,18 @@ const HourlyWeatherSingle = ({ singleHourData }) => {
                 }}
             >
                 <Typography variant='h4' sx={{ margin: 1, marginTop: 2 }}>
-                    {hour}
+                    {singleHourData.hour}
                     <Divider></Divider>
                 </Typography>
 
                 <Typography sx={{ margin: 1 }}>
-                    {date}
+                    {singleHourData.date}
                     <Divider></Divider>
                 </Typography>
 
                 <Card
                     component='img'
-                    src={weatherImage}
+                    src={singleHourData.weatherImage}
                     style={{
                         height: '100px',
                         width: '100px',
@@ -67,16 +54,16 @@ const HourlyWeatherSingle = ({ singleHourData }) => {
                 />
             </Box>
             <Divider></Divider>
-            <Typography variant='h4'>{temp} °C</Typography>
+            <Typography variant='h4'>{singleHourData.temp} °C</Typography>
             <Divider></Divider>
 
-            <Typography> {feelsLike} °C</Typography>
+            <Typography> {singleHourData.feelsLike} °C</Typography>
             <Divider></Divider>
-            <Typography>🍃{windspeed} m/s</Typography>
+            <Typography>🍃{singleHourData.windspeed} m/s</Typography>
             <Divider></Divider>
-            <Typography>💨{pressure} hPa</Typography>
+            <Typography>💨{singleHourData.pressure} hPa</Typography>
             <Divider></Divider>
-            <Typography>💧{humidity} </Typography>
+            <Typography>💧{singleHourData.humidity} </Typography>
             <Divider></Divider>
         </Paper>
     );
@@ -84,19 +71,19 @@ const HourlyWeatherSingle = ({ singleHourData }) => {
 
 export default HourlyWeatherSingle;
 
-HourlyWeatherSingle.propTypes = {
-    singleHourData: PropTypes.shape({
-        dt: PropTypes.number.isRequired,
-        temp: PropTypes.number.isRequired,
-        feels_like: PropTypes.number.isRequired,
-        clouds: PropTypes.number.isRequired,
-        pressure: PropTypes.number.isRequired,
-        wind_speed: PropTypes.number.isRequired,
-        humidity: PropTypes.number.isRequired,
-        weather: PropTypes.arrayOf(
-            PropTypes.shape({
-                icon: PropTypes.string.isRequired,
-            })
-        ).isRequired,
-    }).isRequired,
-};
+// HourlyWeatherSingle.propTypes = {
+//     singleHourData: PropTypes.shape({
+//         dt: PropTypes.number.isRequired,
+//         temp: PropTypes.number.isRequired,
+//         feels_like: PropTypes.number.isRequired,
+//         clouds: PropTypes.number.isRequired,
+//         pressure: PropTypes.number.isRequired,
+//         wind_speed: PropTypes.number.isRequired,
+//         humidity: PropTypes.number.isRequired,
+//         weather: PropTypes.arrayOf(
+//             PropTypes.shape({
+//                 icon: PropTypes.string.isRequired,
+//             })
+//         ).isRequired,
+//     }).isRequired,
+// };

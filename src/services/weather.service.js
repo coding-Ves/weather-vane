@@ -74,36 +74,62 @@ export const submitWeatherInfo = async (
 
 // Switch the default weather API icons with selected ones + gif background
 export const switchDefaultIcons = (icon) => {
+    const timeOfDay = icon.slice(2);
     const iconName = icon.slice(0, 2);
 
     switch (iconName) {
         // clear sky
         case '01':
-            return '/src/assets/weather-icons/sun.png';
+            if (timeOfDay === 'd') {
+                return '/src/assets/weather-icons/clear-sky-day.gif';
+            } else {
+                return '/src/assets/weather-icons/clear-sky-day.gif';
+            }
         // few clouds
         case '02':
-            return '/src/assets/weather-icons/few-clouds.png';
+            if (timeOfDay === 'd') {
+                return '/src/assets/weather-icons/few-clouds-day.gif';
+            } else {
+                return '/src/assets/weather-icons/few-clouds-night.gif';
+            }
         // scattered clouds
         case '03':
-            return '/src/assets/weather-icons/scattered-clouds.png';
+            if (timeOfDay === 'd') {
+                return '/src/assets/weather-icons/few-clouds-day.gif';
+            } else {
+                return '/src/assets/weather-icons/few-clouds-night.gif';
+            }
         // broken clouds
         case '04':
-            return '/src/assets/weather-icons/broken-clouds.png';
+            if (timeOfDay === 'd') {
+                return '/src/assets/weather-icons/few-clouds-day.gif';
+            } else {
+                return '/src/assets/weather-icons/few-clouds-night.gif';
+            }
         // shower rain
         case '09':
-            return '/src/assets/weather-icons/shower-rain.png';
+            if (timeOfDay === 'd') {
+                return '/src/assets/weather-icons/rain-day.gif';
+            } else {
+                return '/src/assets/weather-icons/rain-night.gif';
+            }
         // rain
         case '10':
-            return '/src/assets/weather-icons/rain.png';
+            if (timeOfDay === 'd') {
+                return '/src/assets/weather-icons/rain-day.gif';
+            } else {
+                return '/src/assets/weather-icons/rain-night.gif';
+            }
         // thunderstorm
         case '11':
-            return '/src/assets/weather-icons/thunderstorm.png';
+            return '/src/assets/weather-icons/thunderstorm.gif.gif';
+
         // snow
         case '13':
-            return '/src/assets/weather-icons/snow.png';
+            return '/src/assets/weather-icons/snow.gif';
         // mist
         case '50':
-            return '/src/assets/weather-icons/mist.png';
+            return '/src/assets/weather-icons/mist.gif';
         default:
             break;
     }
