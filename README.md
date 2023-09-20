@@ -73,11 +73,4 @@ City Images:
 Icons:
 
 -   All Weather icons by <a hrec='https://lottiefiles.com/vdr0uy2wwsoljqtc'>jochang on lottiefiles</a>
-
--   Sun <a href="https://www.freepik.com/free-psd/3d-sun-icon_13908003.htm#query=sun%20icon%203d&position=1&from_view=search&track=ais">Image by jordy_pp</a> on Freepik
--   Clouds <a href="https://www.freepik.com/free-psd/3d-cloud-icon_13908005.htm#query=small%20clouds%203d&position=2&from_view=search&track=ais">Image by jordy_pp</a> on Freepik
--   <a href="https://www.freepik.com/free-psd/3d-rainy-icon_13908006.htm#&position=37&from_view=author?sign-up=google">Image by jordy_pp</a> on Freepik
--   Image by <a href="https://www.freepik.com/free-psd/videogame-gold-lightning-icon-pack_33417980.htm#query=lightning&position=3&from_view=search&track=sph">Freepik</a>
--   Image by <a href="https://www.freepik.com/free-psd/snowflakes-elements-isolated_44990863.htm#query=snow%20flake&position=0&from_view=search&track=ais">Freepik</a>
-
 -   <a href="https://gifer.com/en/PVYD">Loader gif</a>
