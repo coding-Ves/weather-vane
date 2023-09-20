@@ -72,5 +72,5 @@ City Images:
 
 Icons:
 
--   All Weather icons by <a hrec='https://lottiefiles.com/vdr0uy2wwsoljqtc'>jochang on lottiefiles</a>
+-   All Weather icons by <a href='https://lottiefiles.com/vdr0uy2wwsoljqtc'>jochang on lottiefiles</a>
 -   <a href="https://gifer.com/en/PVYD">Loader gif</a>
