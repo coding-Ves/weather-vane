@@ -3,38 +3,15 @@ import LocationOnRoundedIcon from '@mui/icons-material/LocationOnRounded';
 import WaterDropRoundedIcon from '@mui/icons-material/WaterDropRounded';
 import WbTwilightRoundedIcon from '@mui/icons-material/WbTwilightRounded';
 import { Box, Card, Paper, Typography } from '@mui/material';
-import moment from 'moment/moment';
-import { switchDefaultIcons } from '../../services/weather.service';
+
 import { useSelector } from 'react-redux';
+import { transformCurrentInfo } from '../../helpers/transformWeatherData';
 
 const CurrentWeather = () => {
-    const weatherInfo = useSelector((state) => state.weatherInfoSlice.value);
+    const rawWeatherInfo = useSelector((state) => state.weatherInfoSlice.value);
     const currentCity = useSelector((state) => state.currentCitySlice.value);
 
-    const weatherImage = switchDefaultIcons(
-        weatherInfo.current.weather[0].icon
-    );
-
-    const temp = weatherInfo.current.temp.toFixed(0);
-    const feelsLikeTemp = weatherInfo.current.feels_like;
-    const humidity = weatherInfo.current.humidity;
-    const windSpeed = weatherInfo.current.wind_speed.toFixed(0);
-
-    const sunriseMilliseconds = weatherInfo.current.sunrise;
-    const sunsetMilliseconds = weatherInfo.current.sunset;
-
-    const sunrise = moment
-        .unix(sunriseMilliseconds)
-        .utcOffset(weatherInfo.timezone_offset / 60)
-        .format('HH:mm');
-    const sunset = moment
-        .unix(sunsetMilliseconds)
-        .utcOffset(weatherInfo.timezone_offset / 60)
-        .format('HH:mm');
-
-    const weatherStatus = weatherInfo.current.weather[0].main.toUpperCase();
-    const weatherDesc =
-        weatherInfo.current.weather[0].description.toUpperCase();
+    const weatherInfo = transformCurrentInfo(rawWeatherInfo);
 
     const smallWeatherStyles = {
         display: 'flex',
@@ -106,18 +83,20 @@ const CurrentWeather = () => {
                     {'  '}
                     {currentCity.toUpperCase()}
                 </Typography>
-                <Typography>{weatherStatus}</Typography>
-                <Typography sx={{ fontSize: '12px' }}>{weatherDesc}</Typography>
+                <Typography>{weatherInfo.weatherStatus}</Typography>
+                <Typography sx={{ fontSize: '12px' }}>
+                    {weatherInfo.weatherDesc}
+                </Typography>
                 <Card
                     component='img'
-                    src={weatherImage}
+                    src={weatherInfo.weatherImage}
                     style={{
-                        height: '200px',
-                        width: '200px',
+                        height: '220px',
+                        width: '220px',
                         marginTop: 5,
                         borderRadius: '30px',
-                        backgroundColor: 'rgba(250, 250, 250, 0.95)',
-                        padding: 10,
+                        backgroundColor: `${weatherInfo.iconBGColor}`,
+                        padding: 8,
                     }}
                 />
             </Box>
@@ -129,8 +108,10 @@ const CurrentWeather = () => {
                     alignItems: 'center',
                 }}
             >
-                <Typography variant='h3'>{temp} °C</Typography>
-                <Typography>..but it feels like: {feelsLikeTemp} °C</Typography>
+                <Typography variant='h3'>{weatherInfo.temp} °C</Typography>
+                <Typography>
+                    ..but it feels like: {weatherInfo.feelsLikeTemp} °C
+                </Typography>
             </Box>
 
             <Box
@@ -147,23 +128,27 @@ const CurrentWeather = () => {
                 <Card sx={smallWeatherStyles}>
                     <WaterDropRoundedIcon sx={iconsStyles} />
                     <Typography sx={{ color: '#395493' }}>Humidity</Typography>
-                    <Typography variant='h6'>{humidity}%</Typography>
+                    <Typography variant='h6'>
+                        {weatherInfo.humidity}%
+                    </Typography>
                 </Card>
                 <Card sx={smallWeatherStyles}>
                     <AirRoundedIcon sx={iconsStyles} />
                     <Typography sx={{ color: '#395493' }}>Windspeed</Typography>
-                    <Typography variant='h6'>{windSpeed} m/s</Typography>
+                    <Typography variant='h6'>
+                        {weatherInfo.windSpeed} m/s
+                    </Typography>
                 </Card>
                 <Card sx={smallWeatherStyles}>
                     <WbTwilightRoundedIcon sx={iconsStyles} />
                     <Typography sx={{ color: '#ea8533' }}>Sunrise</Typography>
-                    <Typography variant='h6'>{sunrise}</Typography>
+                    <Typography variant='h6'>{weatherInfo.sunrise}</Typography>
                 </Card>
 
                 <Card sx={smallWeatherStyles}>
                     <WbTwilightRoundedIcon sx={iconsStyles} />
                     <Typography sx={{ color: '#ed5550' }}>Sunset</Typography>
-                    <Typography variant='h6'>{sunset}</Typography>
+                    <Typography variant='h6'>{weatherInfo.sunset}</Typography>
                 </Card>
             </Box>
         </Paper>

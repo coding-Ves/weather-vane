@@ -60,11 +60,11 @@ const HourlyWeather = () => {
                 <Divider></Divider>
             </Paper>
 
-            {weatherInfo.hourly.map((singleHourData) => {
+            {weatherInfo.hourly.map((singleHourDataRaw) => {
                 return (
                     <HourlyWeatherSingle
-                        singleHourData={singleHourData}
-                        key={singleHourData.dt}
+                        singleHourDataRaw={singleHourDataRaw}
+                        key={singleHourDataRaw.dt}
                     />
                 );
             })}
