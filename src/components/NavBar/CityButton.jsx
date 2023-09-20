@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import { updateCurrentCity } from '../../redux/slices/currentCitySlice';
 import { updateCurrentCoords } from '../../redux/slices/currentCoordsSlice';
 import { updateWeatherInfo } from '../../redux/slices/weatherInfoSlice';
+import { updateLoading } from '../../redux/slices/loadingSlice';
 
 const buttonStyle = {
     fontSize: '18px',
@@ -44,6 +45,7 @@ const CityButton = ({ backgroundImage, cityName }) => {
     const dispatch = useDispatch();
 
     const handleClick = () => {
+        dispatch(updateLoading(true));
         dispatch(updateCurrentCoords({ lat: coords.lat, lon: coords.lon }));
         dispatch(updateCurrentCity(cityName));
 
@@ -51,7 +53,13 @@ const CityButton = ({ backgroundImage, cityName }) => {
             .then((data) => {
                 dispatch(updateWeatherInfo(data));
             })
-            .catch((error) => console.log(error));
+            .then(() => {
+                dispatch(updateLoading(false));
+            })
+            .catch((error) => {
+                console.log(error);
+                dispatch(updateLoading(true));
+            });
     };
 
     const coords = coordinateConstants[`COORDS_${cityName.toUpperCase()}`];

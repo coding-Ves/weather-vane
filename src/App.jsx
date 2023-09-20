@@ -4,6 +4,7 @@ import Dashboard from './components/Dashboard/Dashboard';
 import NavBar from './components/NavBar/NavBar';
 import Search from './components/Search/Search.jsx';
 import { useSelector } from 'react-redux';
+import Loader from './components/Loader/Loader';
 
 export const App = () => {
     // const weatherInfo = useWeatherStore((state) => state.weatherInfo);
@@ -11,6 +12,7 @@ export const App = () => {
 
     return (
         <>
+            <Loader />
             <NavBar />
             <Search />
             {weatherInfo === null ? (
