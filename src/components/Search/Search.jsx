@@ -9,6 +9,7 @@ import {
 import { updateCurrentCity } from '../../redux/slices/currentCitySlice';
 import { updateCurrentCoords } from '../../redux/slices/currentCoordsSlice';
 import { updateWeatherInfo } from '../../redux/slices/weatherInfoSlice';
+import { updateLoading } from '../../redux/slices/loadingSlice';
 import { useDispatch } from 'react-redux';
 
 export const Search = () => {
@@ -42,11 +43,19 @@ export const Search = () => {
     };
 
     const handleResultClick = (result) => {
+        dispatch(updateLoading(true));
         dispatch(updateCurrentCoords({ lat: result.lat, lon: result.lon }));
         dispatch(updateCurrentCity(result.name));
         fetchWeatherByCoords(result.lat, result.lon)
-            .then((data) => dispatch(updateWeatherInfo(data)))
-            .catch((error) => console.log(error));
+            .then((data) =>
+                dispatch(updateWeatherInfo(data)).then(() =>
+                    dispatch(updateLoading(false))
+                )
+            )
+            .catch((error) => {
+                dispatch(updateLoading(false));
+                console.log(error);
+            });
     };
 
     return (

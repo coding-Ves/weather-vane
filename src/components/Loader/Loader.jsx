@@ -24,6 +24,7 @@ const Loader = () => {
     useEffect(() => {
         const randomIndex = Math.floor(Math.random() * loadingMessages.length);
         setRandomLoadingMessage(loadingMessages[randomIndex]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [loading]);
 
     const loaderImage = '/src/assets/loader.gif';

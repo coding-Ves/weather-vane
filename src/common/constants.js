@@ -12,6 +12,10 @@ export const SEARCH_RESULT_LIMIT = 5;
 
 export const WEATHER_STATION_ID = '607da83509e7430001b9e5a0';
 
+// CALCULATIONS
+
+export const ONE_DAY_MILLISECONDS = 8640000000;
+
 // COORDINATES
 
 export const COORDS_LONDON = {
