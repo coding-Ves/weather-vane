@@ -1,9 +1,10 @@
 import { Box, Divider, Paper, Typography } from '@mui/material';
 import HourlyWeatherSingle from './HourlyWeatherSingle';
 import { useSelector } from 'react-redux';
+import { getWeatherInfo } from '../../redux/slices/weatherSlice';
 
 const HourlyWeather = () => {
-    const weatherInfo = useSelector((state) => state.weatherInfoSlice.value);
+    const weatherInfo = useSelector((state) => getWeatherInfo(state));
 
     return (
         <Box

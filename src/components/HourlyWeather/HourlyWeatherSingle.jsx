@@ -1,9 +1,11 @@
 import { Box, Card, Divider, Paper, Typography } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { transformHourlyInfo } from '../../helpers/transformWeatherData';
+import { getWeatherInfo } from '../../redux/slices/weatherSlice';
 
 const HourlyWeatherSingle = (singleHourDataRaw) => {
-    const weatherInfo = useSelector((state) => state.weatherInfoSlice.value);
+    const weatherInfo = useSelector((state) => getWeatherInfo(state));
+
     const singleHourData = transformHourlyInfo(
         singleHourDataRaw,
         weatherInfo.timezone_offset

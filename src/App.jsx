@@ -5,10 +5,11 @@ import NavBar from './components/NavBar/NavBar';
 import Search from './components/Search/Search.jsx';
 import { useSelector } from 'react-redux';
 import Loader from './components/Loader/Loader';
+import { getWeatherInfo } from './redux/slices/weatherSlice';
 
 export const App = () => {
     // const weatherInfo = useWeatherStore((state) => state.weatherInfo);
-    const weatherInfo = useSelector((state) => state.weatherInfoSlice.value);
+    const weatherInfo = useSelector((state) => getWeatherInfo(state));
 
     return (
         <>

@@ -1,10 +1,10 @@
-import { Box } from '@mui/material';
+// import { Box } from '@mui/material';
 import CityGroupButtons from './CityButtonGroup';
 
 const NavBar = () => {
     return (
         <>
-            <Box
+            {/* <Box
                 sx={{
                     width: '200px',
                     height: '100px',
@@ -29,7 +29,7 @@ const NavBar = () => {
                     },
                     marginRight: 'auto',
                 }}
-            />
+            /> */}
             <CityGroupButtons />
         </>
     );

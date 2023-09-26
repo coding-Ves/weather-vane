@@ -6,12 +6,15 @@ import { Box, Card, Paper, Typography } from '@mui/material';
 
 import { useSelector } from 'react-redux';
 import { transformCurrentInfo } from '../../helpers/transformWeatherData';
+import { getWeatherInfo } from '../../redux/slices/weatherSlice';
+import { getCityName } from '../../redux/slices/currentSelectionSlice';
 
 const CurrentWeather = () => {
-    const rawWeatherInfo = useSelector((state) => state.weatherInfoSlice.value);
-    const currentCity = useSelector((state) => state.currentCitySlice.value);
-
+    // Get and set the weather info for the city
+    const rawWeatherInfo = useSelector((state) => getWeatherInfo(state));
     const weatherInfo = transformCurrentInfo(rawWeatherInfo);
+
+    const currentCity = useSelector((state) => getCityName(state));
 
     const smallWeatherStyles = {
         display: 'flex',

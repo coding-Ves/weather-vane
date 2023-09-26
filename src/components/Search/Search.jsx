@@ -6,11 +6,10 @@ import {
     OPEN_WEATHER_GEOCODING_SEARCH,
     SEARCH_RESULT_LIMIT,
 } from '../../common/constants';
-import { updateCurrentCity } from '../../redux/slices/currentCitySlice';
-import { updateCurrentCoords } from '../../redux/slices/currentCoordsSlice';
-import { updateWeatherInfo } from '../../redux/slices/weatherInfoSlice';
+import { updateWeather } from '../../redux/slices/weatherSlice';
 import { updateLoading } from '../../redux/slices/loadingSlice';
 import { useDispatch } from 'react-redux';
+import { updateCurrentSelection } from '../../redux/slices/currentSelectionSlice';
 
 export const Search = () => {
     const dispatch = useDispatch();
@@ -44,11 +43,15 @@ export const Search = () => {
 
     const handleResultClick = (result) => {
         dispatch(updateLoading(true));
-        dispatch(updateCurrentCoords({ lat: result.lat, lon: result.lon }));
-        dispatch(updateCurrentCity(result.name));
-        fetchWeatherByCoords(result.lat, result.lon)
+        dispatch(
+            updateCurrentSelection({
+                city: result.name,
+                coordinates: { lat: result.lat, lon: result.lat },
+            })
+        );
+        fetchWeatherByCoords(result.lat, result.lat)
             .then((data) =>
-                dispatch(updateWeatherInfo(data)).then(() =>
+                dispatch(updateWeather(data)).then(() =>
                     dispatch(updateLoading(false))
                 )
             )

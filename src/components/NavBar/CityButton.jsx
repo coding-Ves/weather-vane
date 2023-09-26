@@ -3,10 +3,11 @@ import * as coordinateConstants from '/src/common/constants';
 import { fetchWeatherByCoords } from '../../services/weather.service';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-import { updateCurrentCity } from '../../redux/slices/currentCitySlice';
-import { updateCurrentCoords } from '../../redux/slices/currentCoordsSlice';
-import { updateWeatherInfo } from '../../redux/slices/weatherInfoSlice';
+// import { updateCurrentCity } from '../../redux/slices/currentCitySlice';
+// import { updateCurrentCoords } from '../../redux/slices/currentCoordsSlice';
+import { updateWeather } from '../../redux/slices/weatherSlice';
 import { updateLoading } from '../../redux/slices/loadingSlice';
+import { updateCurrentSelection } from '../../redux/slices/currentSelectionSlice';
 
 const buttonStyle = {
     fontSize: '18px',
@@ -46,12 +47,16 @@ const CityButton = ({ backgroundImage, cityName }) => {
 
     const handleClick = () => {
         dispatch(updateLoading(true));
-        dispatch(updateCurrentCoords({ lat: coords.lat, lon: coords.lon }));
-        dispatch(updateCurrentCity(cityName));
+        dispatch(
+            updateCurrentSelection({
+                city: cityName,
+                coordinates: { lat: coords.lat, lon: coords.lon },
+            })
+        );
 
         fetchWeatherByCoords(coords.lat, coords.lon)
             .then((data) => {
-                dispatch(updateWeatherInfo(data));
+                dispatch(updateWeather(data));
             })
             .then(() => {
                 dispatch(updateLoading(false));

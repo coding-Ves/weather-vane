@@ -1,10 +1,12 @@
-import { Box, Card, Paper, Tooltip, Typography } from '@mui/material';
+import { Box, Card, Divider, Paper, Tooltip, Typography } from '@mui/material';
 import PropTypes from 'prop-types';
 import { transformDailyInfo } from '../../helpers/transformWeatherData';
 import { useSelector } from 'react-redux';
+import { getWeatherInfo } from '../../redux/slices/weatherSlice';
 
 const DailyWeatherSingle = (singleDayRaw) => {
-    const weatherInfo = useSelector((state) => state.weatherInfoSlice.value);
+    const weatherInfo = useSelector((state) => getWeatherInfo(state));
+
     const singleDay = transformDailyInfo(
         singleDayRaw,
         weatherInfo.timezone_offset
@@ -48,20 +50,27 @@ const DailyWeatherSingle = (singleDayRaw) => {
                     {singleDay.date == singleDay.today ? (
                         <Typography
                             variant='h6'
-                            sx={{ fontWeight: 500, marginTop: 2 }}
+                            sx={{
+                                fontWeight: 500,
+                                marginTop: 2,
+                            }}
                         >
                             TODAY
                         </Typography>
                     ) : singleDay.date == singleDay.tomorrow ? (
                         <Typography
                             variant='h6'
-                            sx={{ fontWeight: 500, marginTop: 2 }}
+                            sx={{
+                                fontWeight: 500,
+                                marginTop: 2,
+                            }}
                         >
                             TOMORROW
                         </Typography>
                     ) : (
                         <Box sx={{ padding: 3 }}></Box>
                     )}
+                    <Divider></Divider>
                     <Typography variant='h6'>
                         {singleDay.dayOfTheWeek}
                     </Typography>
