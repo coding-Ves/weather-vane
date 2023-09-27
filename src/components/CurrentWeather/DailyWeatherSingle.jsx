@@ -3,9 +3,11 @@ import PropTypes from 'prop-types';
 import { transformDailyInfo } from '../../helpers/transformWeatherData';
 import { useSelector } from 'react-redux';
 import { getWeatherInfo } from '../../redux/slices/weatherSlice';
+import { useEffect, useState } from 'react';
 
 const DailyWeatherSingle = (singleDayRaw) => {
     const weatherInfo = useSelector((state) => getWeatherInfo(state));
+    const [iconBGColor, setIconBGColor] = useState();
 
     const singleDay = transformDailyInfo(
         singleDayRaw,
@@ -17,6 +19,14 @@ const DailyWeatherSingle = (singleDayRaw) => {
             width: '150px',
         },
     };
+
+    useEffect(() => {
+        if (weatherInfo.current.weather[0].icon.slice(2) === 'd') {
+            setIconBGColor('rgba(250, 250, 250, 0.95)');
+        } else {
+            setIconBGColor('rgba(50, 50, 50, 0.95)');
+        }
+    }, [weatherInfo]);
 
     return (
         <Paper
@@ -84,10 +94,13 @@ const DailyWeatherSingle = (singleDayRaw) => {
                             width: '100px',
                             marginTop: 5,
                             borderRadius: '20px',
-                            backgroundColor: 'rgba(250, 250, 250, 0.95)',
+                            backgroundColor: `${iconBGColor}`,
+                            borderColor: `${iconBGColor}`,
+                            // backgroundColor: 'rgba(250, 250, 250, 0.95)',
                             padding: 10,
                         }}
                     />
+                    {console.log(weatherInfo)}
                     <Typography variant='button'>
                         {singleDay.description}
                     </Typography>
