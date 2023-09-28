@@ -15,7 +15,7 @@ export const transformCurrentInfo = (weatherInfo) => {
     );
 
     const temp = weatherInfo.current.temp.toFixed(0);
-    const feelsLikeTemp = weatherInfo.current.feels_like;
+    const feelsLikeTemp = weatherInfo.current.feels_like.toFixed(0);
     const humidity = weatherInfo.current.humidity;
     const windSpeed = weatherInfo.current.wind_speed.toFixed(0);
 
@@ -115,6 +115,7 @@ export const transformHourlyInfo = (singleHourDataRaw, timezoneOffset) => {
     const windspeed = singleHourData.wind_speed.toFixed(0);
     const humidity = singleHourData.humidity;
     const weatherImage = switchDefaultIcons(singleHourData.weather[0].icon);
+    const description = singleHourData.weather[0].description.toUpperCase();
 
     const date = moment
         .unix(singleHourData.dt)
@@ -128,6 +129,7 @@ export const transformHourlyInfo = (singleHourDataRaw, timezoneOffset) => {
 
     return {
         temp: temp,
+        description: description,
         date: date,
         hour: hour,
         feelsLike: feelsLike,
@@ -135,5 +137,31 @@ export const transformHourlyInfo = (singleHourDataRaw, timezoneOffset) => {
         windspeed: windspeed,
         humidity: humidity,
         weatherImage: weatherImage,
+    };
+};
+
+export const transformAlertsData = (weatherInfo, timezoneOffset) => {
+    if (!weatherInfo.alerts) {
+        return null;
+    }
+
+    const alertInfo = weatherInfo.alerts[0];
+
+    const start = moment
+        .unix(alertInfo.start)
+        .utcOffset(timezoneOffset / 60)
+        .format('Do MMM YYYY, HH:mm a');
+
+    const end = moment
+        .unix(alertInfo.end)
+        .utcOffset(timezoneOffset / 60)
+        .format('Do MMM YYYY, HH:mm a');
+
+    return {
+        title: alertInfo.event,
+        description: alertInfo.description,
+        start: start,
+        end: end,
+        sender: alertInfo.sender_name,
     };
 };
