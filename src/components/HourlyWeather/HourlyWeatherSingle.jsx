@@ -26,13 +26,16 @@ const HourlyWeatherSingle = (singleHourDataRaw) => {
             sx={{
                 display: 'flex',
                 flexDirection: 'column',
-                width: '300px',
+                width: 'fit-content',
+                height: '300px',
                 borderRadius: '10px',
+                alignItems: 'center',
+                justifyContent: 'center',
                 gap: 1,
                 paddingLeft: 3,
                 paddingRight: 3,
-                backgroundColor: 'rgba(200, 200, 200, 0.3)',
-                color: 'white',
+                // backgroundColor: 'rgba(200, 200, 200, 0.3)',
+                // color: 'white',
             }}
         >
             <Box
@@ -45,12 +48,6 @@ const HourlyWeatherSingle = (singleHourDataRaw) => {
             >
                 <Typography variant='h4' sx={{ margin: 1, marginTop: 2 }}>
                     {singleHourData.hour}
-                    <Divider></Divider>
-                </Typography>
-
-                <Typography sx={{ margin: 1 }}>
-                    {singleHourData.date}
-                    <Divider></Divider>
                 </Typography>
 
                 <Card
@@ -59,7 +56,7 @@ const HourlyWeatherSingle = (singleHourDataRaw) => {
                     style={{
                         height: '100px',
                         width: '100px',
-                        margin: 3,
+                        margin: 1,
                         borderRadius: '20px',
                         border: `6px solid ${iconBGColor}`,
                         borderColor: `${iconBGColor}`,
@@ -67,18 +64,11 @@ const HourlyWeatherSingle = (singleHourDataRaw) => {
                     }}
                 />
             </Box>
+            <Typography variant='button' sx={{ fontSize: '12px' }}>
+                {singleHourData.description}
+            </Typography>
             <Divider></Divider>
-            <Typography variant='h4'>{singleHourData.temp} °C</Typography>
-            <Divider></Divider>
-
-            <Typography> {singleHourData.feelsLike} °C</Typography>
-            <Divider></Divider>
-            <Typography>🍃{singleHourData.windspeed} m/s</Typography>
-            <Divider></Divider>
-            <Typography>💨{singleHourData.pressure} hPa</Typography>
-            <Divider></Divider>
-            <Typography>💧{singleHourData.humidity} </Typography>
-            <Divider></Divider>
+            <Typography variant='h5'>{singleHourData.temp} °C</Typography>
         </Paper>
     );
 };
