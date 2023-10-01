@@ -34,10 +34,12 @@ const WeatherAlerts = () => {
                     gap: 2,
                 }}
             >
-                <Typography>
+                <Typography sx={{ marginTop: 3 }}>
                     <WarningRoundedIcon sx={{ fontSize: '50px' }} />
                 </Typography>
-                <Typography variant='h5'>WEATHER ALERTS</Typography>
+                <Typography variant='h5' sx={{ marginTop: 3 }}>
+                    WEATHER ALERTS
+                </Typography>
             </Box>
             {weatherAlertInfo === null ? (
                 <Box
