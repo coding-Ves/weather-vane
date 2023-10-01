@@ -11,7 +11,6 @@ const HourlyWeather = () => {
             sx={{
                 display: 'flex',
                 borderRadius: 3,
-
                 borderTopRightRadius: {
                     xl: 50,
                 },
@@ -21,6 +20,7 @@ const HourlyWeather = () => {
                 justifyContent: 'start',
                 padding: 2,
             }}
+            elevation={2}
         >
             {weatherInfo.hourly.map((singleHourDataRaw) => {
                 return (

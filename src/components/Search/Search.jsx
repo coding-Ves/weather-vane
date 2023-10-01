@@ -68,6 +68,7 @@ export const Search = () => {
                 alignItems: 'center',
                 justifyContent: 'center',
             }}
+            elevation={5}
         >
             <Autocomplete
                 options={results}
@@ -85,9 +86,9 @@ export const Search = () => {
                             ...params.InputProps,
                             style: {
                                 borderRadius: '30px',
+                                border: '2px solid white',
                                 width: '45vw',
                                 minWidth: '300px',
-                                backgroundColor: 'white',
                             },
                             endAdornment: (
                                 <IconButton

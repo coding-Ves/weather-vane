@@ -21,6 +21,7 @@ const DailyWeather = () => {
                 //     xl: 0,
                 // },
             }}
+            elevation={4}
         >
             {weatherInfo.daily.slice(1).map((singleDay) => {
                 return (

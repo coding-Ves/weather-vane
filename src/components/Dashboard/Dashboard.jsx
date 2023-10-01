@@ -12,7 +12,7 @@ const Dashboard = () => {
     const currentCity = useSelector((state) => getCityName(state));
 
     return (
-        <Box sx={{ padding: 2 }}>
+        <Box sx={{ padding: 2 }} elevation={3}>
             <Box
                 sx={{
                     display: 'flex',

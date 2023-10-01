@@ -33,7 +33,6 @@ const DailyWeatherSingle = (singleDayRaw) => {
 
     return (
         <Paper
-            elevation={3}
             sx={{
                 display: 'flex',
                 flexDirection: 'row',
@@ -43,9 +42,8 @@ const DailyWeatherSingle = (singleDayRaw) => {
                 gap: 1,
                 padding: 1,
                 position: 'relative',
-                // backgroundColor: 'rgba(200, 200, 200, 0.3)',
-                // color: 'white',
             }}
+            elevation={8}
         >
             <Tooltip
                 title={singleDay.extraInfo}

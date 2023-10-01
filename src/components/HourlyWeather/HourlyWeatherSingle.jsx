@@ -34,9 +34,8 @@ const HourlyWeatherSingle = (singleHourDataRaw) => {
                 gap: 1,
                 paddingLeft: 3,
                 paddingRight: 3,
-                // backgroundColor: 'rgba(200, 200, 200, 0.3)',
-                // color: 'white',
             }}
+            elevation={8}
         >
             <Box
                 sx={{

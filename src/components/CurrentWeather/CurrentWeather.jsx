@@ -45,7 +45,6 @@ const CurrentWeather = () => {
     };
 
     const iconsStyles = {
-        color: 'rgba(30, 30, 30, 0.4)',
         fontSize: '30px',
         display: {
             xs: 'none',
@@ -70,7 +69,6 @@ const CurrentWeather = () => {
                 padding: 2,
                 justifyContent: 'space-between',
                 borderRadius: 3,
-
                 borderTopLeftRadius: {
                     xl: 50,
                 },
@@ -78,6 +76,7 @@ const CurrentWeather = () => {
                     xl: 0,
                 },
             }}
+            elevation={4}
         >
             <Box
                 sx={{
@@ -100,7 +99,7 @@ const CurrentWeather = () => {
                         width: '230px',
                         marginTop: 5,
                         borderRadius: 55,
-                        backgroundColor: `${weatherInfo.iconBGColor}`,
+                        border: `4px solid ${weatherInfo.iconBGColor}`,
                     }}
                 />
 
@@ -120,103 +119,34 @@ const CurrentWeather = () => {
                     margin: 1,
                 }}
             >
-                <Card sx={smallWeatherStyles}>
+                {/*This can be pulled out for reusability and accept props  */}
+                <Card sx={smallWeatherStyles} elevation={8}>
                     <WaterDropRoundedIcon sx={iconsStyles} />
                     <Typography sx={{ color: '#395493' }}>Humidity</Typography>
                     <Typography variant='h6'>
                         {weatherInfo.humidity}%
                     </Typography>
                 </Card>
-                <Card sx={smallWeatherStyles}>
+                <Card sx={smallWeatherStyles} elevation={8}>
                     <AirRoundedIcon sx={iconsStyles} />
                     <Typography sx={{ color: '#395493' }}>Windspeed</Typography>
                     <Typography variant='h6'>
                         {weatherInfo.windSpeed} m/s
                     </Typography>
                 </Card>
-                <Card sx={smallWeatherStyles}>
+                <Card sx={smallWeatherStyles} elevation={8}>
                     <WbTwilightRoundedIcon sx={iconsStyles} />
                     <Typography sx={{ color: '#ea8533' }}>Sunrise</Typography>
                     <Typography variant='h6'>{weatherInfo.sunrise}</Typography>
                 </Card>
 
-                <Card sx={smallWeatherStyles}>
+                <Card sx={smallWeatherStyles} elevation={8}>
                     <WbTwilightRoundedIcon sx={iconsStyles} />
                     <Typography sx={{ color: '#ed5550' }}>Sunset</Typography>
                     <Typography variant='h6'>{weatherInfo.sunset}</Typography>
                 </Card>
             </Box>
         </Paper>
-
-        // <Paper
-        //     sx={{
-        //         display: 'flex',
-        //         flexDirection: 'column',
-        //         justifyContent: 'space-between',
-        //         color: 'white',
-        //         // width: {
-        //         //     xs: '100%',
-        //         //     sm: '100%',
-        //         //     md: '100%',
-        //         //     lg: '100%',
-        //         //     xl: '250px',
-        //         // },
-        //         borderRadius: '10px',
-        //         gap: 1,
-        //         padding: 2,
-        //         backgroundColor: 'rgba(200, 200, 200, 0.3)',
-        //     }}
-        // >
-        //     <Box
-        //         sx={{
-        //             display: 'flex',
-        //             flexDirection: 'row',
-        //             alignItems: 'center',
-        //         }}
-        //     >
-        //         <Box>
-        //             <Typography variant='button' sx={{ fontSize: '25px' }}>
-        //                 <LocationOnRoundedIcon sx={{ fontSize: '16px' }} />
-        //                 {'  '}
-        //                 {currentCity.toUpperCase()}
-
-        //                 <Typography variant='h3'>
-        //                     {weatherInfo.temp} °C
-        //                 </Typography>
-        //                 <Typography>
-        //                     ..but it feels like: {weatherInfo.feelsLikeTemp} °C
-        //                 </Typography>
-        //             </Typography>
-        //         </Box>
-        //         <Box>
-        //             <Typography>{weatherInfo.weatherStatus}</Typography>
-        //             <Typography sx={{ fontSize: '12px' }}>
-        //                 {weatherInfo.weatherDesc}
-        //             </Typography>
-        //             <Card
-        //                 component='img'
-        //                 src={weatherInfo.weatherImage}
-        //                 style={{
-        //                     height: '220px',
-        //                     width: '220px',
-        //                     marginTop: 5,
-        //                     borderRadius: '30px',
-        //                     backgroundColor: `${weatherInfo.iconBGColor}`,
-        //                     padding: 8,
-        //                 }}
-        //             />
-        //         </Box>
-        //     </Box>
-
-        //     <Box
-        //         sx={{
-        //             display: 'flex',
-        //             flexDirection: 'column',
-        //             alignItems: 'center',
-        //         }}
-        //     ></Box>
-
-        // </Paper>
     );
 };
 

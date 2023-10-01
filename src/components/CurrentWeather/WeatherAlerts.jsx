@@ -18,11 +18,11 @@ const WeatherAlerts = () => {
                 borderTopLeftRadius: {
                     xl: 0,
                 },
-
                 borderBottomLeftRadius: {
                     xl: 50,
                 },
             }}
+            elevation={4}
         >
             <Box
                 sx={{
