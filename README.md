@@ -1,12 +1,21 @@
-# Weather Vane
+# WEATHER VANE
 
 **What's a weather vane?**
-A revolving pointer to show the direction of the wind, typically mounted on top of a building
-It shows you the weather!
+A revolving pointer to show the direction of the wind, typically mounted on top of a building.
 
-Find out the weather today, next week or in the next few hours!
+Find out the weather today, next week, or in the next few hours!
 
-## Main Technologies:
+## FEATURES
+- Search for cities to display weather
+- 7 quick-access city buttons
+- Details about Current Weather, Hourly and Weekly forecasts, and Weather Alerts
+- Fully responsive on tablet & mobile.
+- Dark & Light theme/mode
+- Redux state management
+- Uses OpenWeather API for data fetching
+
+
+## MAIN TECHNOLOGIES
 
 <div align="center">
 	<code><img width="70" src="https://user-images.githubusercontent.com/25181517/117447155-6a868a00-af3d-11eb-9cfe-245df15c9f3f.png" alt="JavaScript" title="JavaScript"/></code>
@@ -18,11 +27,18 @@ Find out the weather today, next week or in the next few hours!
         
 </div>
 
-### Extra technologies:
+### EXTRA TECHNOLOGIES
 
--   Zustand - For state management
--   React Hook Form - For form validation and management
+-   Redux - For state management
 -   Moment.js - For date & time handling and conversion
+
+### REDUX STORE STRUCTURE
+-- store 
+--- currentSelection - Stores the name of the current city and the lon & lat coordinates
+--- loading - Stores loading state used for global app loader
+--- theme - Stores current theme and updates it for the light/dark mode toggle
+--- weather - Stores information received from the OpenWeather API about the passed city coords
+
 
 ### Run the project locally
 
