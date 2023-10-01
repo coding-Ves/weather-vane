@@ -34,10 +34,14 @@ Find out the weather today, next week, or in the next few hours!
 
 ### REDUX STORE STRUCTURE
 -- store 
---- currentSelection - Stores the name of the current city and the lon & lat coordinates
---- loading - Stores loading state used for global app loader
---- theme - Stores current theme and updates it for the light/dark mode toggle
---- weather - Stores information received from the OpenWeather API about the passed city coords
+
+---> currentSelection - Stores the name of the current city and the lon & lat coordinates
+
+---> loading - Stores loading state used for global app loader
+
+---> theme - Stores current theme and updates it for the light/dark mode toggle
+
+---> weather - Stores information received from the OpenWeather API about the passed city coords
 
 
 ### Run the project locally
