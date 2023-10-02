@@ -1,5 +1,5 @@
 <div align="center" display='flex' > 
-<img width='200px' src="https://raw.githubusercontent.com/coding-Ves/weather-vane/main/public/logo.png" alt="App Screenshot" title="Weather App Screenshot"/>
+<img width='100px' src="https://raw.githubusercontent.com/coding-Ves/weather-vane/main/public/logo.png" alt="App Screenshot" title="Weather App Screenshot"/>
    
 </div>
 
