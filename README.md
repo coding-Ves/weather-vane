@@ -18,8 +18,8 @@ Find out the weather today, next week, or in the next few hours!
 ## VISUALS
 
 <div align="center" display='flex' flex-direction='column' > 
-<img width='70%' src="/weather-vane/public/Weather-vane.gif" alt="App Screenshot" title="Weather App Screenshot"/>
-   <img width='20%' src="/weather-vane/public/weather-vane-dark.gif" alt="App Screenshot" title="Weather App Screenshot"/>
+<img width='70%' src="https://raw.githubusercontent.com/coding-Ves/weather-vane/theme/public/Weather-vane.gif" alt="App Screenshot" title="Weather App Screenshot"/>
+   <img width='20%' src="https://raw.githubusercontent.com/coding-Ves/weather-vane/theme/public/weather-vane-dark.gif" alt="App Screenshot" title="Weather App Screenshot"/>
 </div>
 
 ## MAIN TECHNOLOGIES
