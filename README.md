@@ -1,3 +1,8 @@
+<div align="center" display='flex' > 
+<img width='100%' src="https://raw.githubusercontent.com/coding-Ves/weather-vane/main/public/logo.png" alt="App Screenshot" title="Weather App Screenshot"/>
+   
+</div>
+
 # WEATHER VANE
 
 **What's a weather vane?**
