@@ -1,6 +1,5 @@
 <div align="center" display='flex' > 
-<img width='100px' src="https://raw.githubusercontent.com/coding-Ves/weather-vane/main/public/logo.png" alt="App Screenshot" title="Weather App Screenshot"/>
-   
+<img width='100px' src="https://raw.githubusercontent.com/coding-Ves/weather-vane/main/public/logo.png" alt="App Screenshot" title="Weather App Screenshot"/> 
 </div>
 
 # WEATHER VANE
@@ -26,6 +25,18 @@ Find out the weather today, next week, or in the next few hours!
 <img width='70%' src="https://raw.githubusercontent.com/coding-Ves/weather-vane/theme/public/Weather-vane.gif" alt="App Screenshot" title="Weather App Screenshot"/>
    <img width='20%' src="https://raw.githubusercontent.com/coding-Ves/weather-vane/theme/public/weather-vane-dark.gif" alt="App Screenshot" title="Weather App Screenshot"/>
 </div>
+
+
+Find out the weather today, next week, or in the next few hours!
+
+## FEATURES
+- Search for cities to display weather
+- 7 quick-access city buttons
+- Details about Current Weather, Hourly and Weekly forecasts, and Weather Alerts
+- Fully responsive on tablet & mobile.
+- Dark & Light theme/mode
+- Redux state management
+- Uses OpenWeather API for data fetching
 
 ## MAIN TECHNOLOGIES
 
@@ -55,6 +66,7 @@ Find out the weather today, next week, or in the next few hours!
 ---> theme - Stores current theme and updates it for the light/dark mode toggle
 
 ---> weather - Stores information received from the OpenWeather API about the passed city coords
+
 
 ### Run the project locally
 
