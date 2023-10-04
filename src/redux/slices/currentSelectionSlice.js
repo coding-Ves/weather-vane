@@ -17,7 +17,6 @@ const currentSelectionSlice = createSlice({
 
 export const { updateCurrentSelection } = currentSelectionSlice.actions;
 
-// retrieve specific data from slice
 export const getCoords = (state) =>
     state.currentSelectionSlice.currentSelection.coordinates;
 

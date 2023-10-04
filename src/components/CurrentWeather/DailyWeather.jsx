@@ -13,13 +13,6 @@ const DailyWeather = () => {
                 flexDirection: 'column',
                 gap: 2,
                 paddingBottom: 1,
-                // marginTop: {
-                //     xs: 2,
-                //     sm: 2,
-                //     md: 2,
-                //     lg: 0,
-                //     xl: 0,
-                // },
             }}
             elevation={4}
         >

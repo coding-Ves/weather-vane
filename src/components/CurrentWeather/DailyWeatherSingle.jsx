@@ -90,7 +90,6 @@ const DailyWeatherSingle = (singleDayRaw) => {
                         borderColor: `${iconBGColor}`,
                         border: `4px solid ${iconBGColor}`,
                         marginLeft: '15px',
-                        // backgroundColor: 'rgba(250, 250, 250, 0.95)',
                     }}
                 />
                 <Typography

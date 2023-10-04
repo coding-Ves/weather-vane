@@ -40,8 +40,6 @@ const CurrentWeather = () => {
         },
 
         padding: 1,
-        // color: 'white',
-        // backgroundColor: 'rgba(200, 200, 200, 0.4)',
     };
 
     const iconsStyles = {

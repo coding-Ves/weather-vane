@@ -73,20 +73,3 @@ const HourlyWeatherSingle = (singleHourDataRaw) => {
 };
 
 export default HourlyWeatherSingle;
-
-// HourlyWeatherSingle.propTypes = {
-//     singleHourData: PropTypes.shape({
-//         dt: PropTypes.number.isRequired,
-//         temp: PropTypes.number.isRequired,
-//         feels_like: PropTypes.number.isRequired,
-//         clouds: PropTypes.number.isRequired,
-//         pressure: PropTypes.number.isRequired,
-//         wind_speed: PropTypes.number.isRequired,
-//         humidity: PropTypes.number.isRequired,
-//         weather: PropTypes.arrayOf(
-//             PropTypes.shape({
-//                 icon: PropTypes.string.isRequired,
-//             })
-//         ).isRequired,
-//     }).isRequired,
-// };

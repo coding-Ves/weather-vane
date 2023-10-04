@@ -11,7 +11,6 @@ import { CssBaseline } from '@mui/material';
 import { getTheme } from './redux/slices/themeSlice';
 
 export const App = () => {
-    // const weatherInfo = useWeatherStore((state) => state.weatherInfo);
     const weatherInfo = useSelector((state) => getWeatherInfo(state));
     const theme = useSelector((state) => getTheme(state));
 

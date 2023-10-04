@@ -3,8 +3,6 @@ import * as coordinateConstants from '/src/common/constants';
 import { fetchWeatherByCoords } from '../../services/weather.service';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-// import { updateCurrentCity } from '../../redux/slices/currentCitySlice';
-// import { updateCurrentCoords } from '../../redux/slices/currentCoordsSlice';
 import { updateWeather } from '../../redux/slices/weatherSlice';
 import { updateLoading } from '../../redux/slices/loadingSlice';
 import { updateCurrentSelection } from '../../redux/slices/currentSelectionSlice';

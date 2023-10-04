@@ -100,7 +100,6 @@ const WeatherAlerts = () => {
                             display: 'flex',
                             overflowY: 'scroll',
                             height: '185px',
-                            // width: '100%',
                         }}
                     >
                         {weatherAlertInfo.description}
