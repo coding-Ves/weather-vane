@@ -13,11 +13,7 @@ const ThemeSwitch = () => {
     const theme = useSelector((state) => getTheme(state));
 
     const handleThemeToggle = () => {
-        if (theme.palette.mode === 'light') {
-            dispatch(toggleDark());
-        } else {
-            dispatch(toggleLight());
-        }
+        dispatch(theme.palette.mode === 'light' ? toggleDark() : toggleLight());
     };
 
     return (
