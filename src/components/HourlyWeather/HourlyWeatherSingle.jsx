@@ -1,11 +1,10 @@
 import { Box, Card, Divider, Paper, Typography } from '@mui/material';
-import { useSelector } from 'react-redux';
 import { transformHourlyInfo } from '../../helpers/transformWeatherData';
-import { getWeatherInfo } from '../../redux/slices/weatherSlice';
 import { useState, useEffect } from 'react';
+import { useWeatherInfo } from '../../hooks/useWeatherInfo';
 
 const HourlyWeatherSingle = (singleHourDataRaw) => {
-    const weatherInfo = useSelector((state) => getWeatherInfo(state));
+    const weatherInfo = useWeatherInfo();
     const [iconBGColor, setIconBGColor] = useState();
 
     useEffect(() => {

@@ -61,7 +61,7 @@ const CityButton = ({ backgroundImage, cityName }) => {
             })
             .catch((error) => {
                 console.log(error);
-                dispatch(updateLoading(true));
+                dispatch(updateLoading(false));
             });
     };
 

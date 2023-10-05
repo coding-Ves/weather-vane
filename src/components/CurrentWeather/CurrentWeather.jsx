@@ -2,14 +2,11 @@ import AirRoundedIcon from '@mui/icons-material/AirRounded';
 import WaterDropRoundedIcon from '@mui/icons-material/WaterDropRounded';
 import WbTwilightRoundedIcon from '@mui/icons-material/WbTwilightRounded';
 import { Box, Card, Paper, Typography } from '@mui/material';
-
-import { useSelector } from 'react-redux';
 import { transformCurrentInfo } from '../../helpers/transformWeatherData';
-import { getWeatherInfo } from '../../redux/slices/weatherSlice';
+import { useWeatherInfo } from '../../hooks/useWeatherInfo';
 
 const CurrentWeather = () => {
-    // Get and set the weather info for the city
-    const rawWeatherInfo = useSelector((state) => getWeatherInfo(state));
+    const rawWeatherInfo = useWeatherInfo();
     const weatherInfo = transformCurrentInfo(rawWeatherInfo);
 
     const smallWeatherStyles = {

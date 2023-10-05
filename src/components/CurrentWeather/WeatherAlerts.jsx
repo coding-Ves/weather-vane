@@ -1,11 +1,10 @@
 import WarningRoundedIcon from '@mui/icons-material/WarningRounded';
 import { Box, Divider, Paper, Typography } from '@mui/material';
-import { useSelector } from 'react-redux';
 import { transformAlertsData } from '../../helpers/transformWeatherData';
-import { getWeatherInfo } from '../../redux/slices/weatherSlice';
+import { useWeatherInfo } from '../../hooks/useWeatherInfo';
 
 const WeatherAlerts = () => {
-    const rawWeatherInfo = useSelector((state) => getWeatherInfo(state));
+    const rawWeatherInfo = useWeatherInfo();
     const weatherAlertInfo = transformAlertsData(
         rawWeatherInfo,
         rawWeatherInfo.timezone_offset

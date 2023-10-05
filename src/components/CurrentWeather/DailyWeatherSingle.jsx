@@ -4,12 +4,11 @@ import InfoRoundedIcon from '@mui/icons-material/InfoRounded';
 import { Box, Card, Paper, Tooltip, Typography } from '@mui/material';
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
 import { transformDailyInfo } from '../../helpers/transformWeatherData';
-import { getWeatherInfo } from '../../redux/slices/weatherSlice';
+import { useWeatherInfo } from '../../hooks/useWeatherInfo';
 
 const DailyWeatherSingle = (singleDayRaw) => {
-    const weatherInfo = useSelector((state) => getWeatherInfo(state));
+    const weatherInfo = useWeatherInfo();
     const [iconBGColor, setIconBGColor] = useState();
 
     const singleDay = transformDailyInfo(

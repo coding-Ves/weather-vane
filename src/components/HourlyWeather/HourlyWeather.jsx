@@ -1,10 +1,9 @@
 import { Card } from '@mui/material';
-import { useSelector } from 'react-redux';
-import { getWeatherInfo } from '../../redux/slices/weatherSlice';
 import HourlyWeatherSingle from './HourlyWeatherSingle';
+import { useWeatherInfo } from '../../hooks/useWeatherInfo';
 
 const HourlyWeather = () => {
-    const weatherInfo = useSelector((state) => getWeatherInfo(state));
+    const weatherInfo = useWeatherInfo();
 
     return (
         <Card
