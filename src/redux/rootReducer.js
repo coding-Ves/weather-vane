@@ -1,16 +1,14 @@
 import { combineReducers } from 'redux';
-import currentCitySliceReducer from './slices/currentCitySlice';
-import currentCoordsSliceReducer from './slices/currentCoordsSlice';
-import weatherInfoSliceReducer from './slices/weatherInfoSlice';
+import weatherSliceReducer from './slices/weatherSlice';
 import loadingSliceReducer from './slices/loadingSlice';
-
-// Each slice reducer gets a key => slice : sliceReducer
+import currentSelectionSliceReducer from './slices/currentSelectionSlice';
+import themeSliceReducer from './slices/themeSlice';
 
 const rootReducer = combineReducers({
-    currentCitySlice: currentCitySliceReducer,
-    currentCoordsSlice: currentCoordsSliceReducer,
-    weatherInfoSlice: weatherInfoSliceReducer,
+    currentSelectionSlice: currentSelectionSliceReducer,
+    weatherSlice: weatherSliceReducer,
     loadingSlice: loadingSliceReducer,
+    themeSlice: themeSliceReducer,
 });
 
 export default rootReducer;

@@ -1,7 +1,31 @@
+<div align="center" display='flex' > 
+<img width='100px' src="https://raw.githubusercontent.com/coding-Ves/weather-vane/main/public/logo.png" alt="App Screenshot" title="Weather App Screenshot"/> 
+</div>
+
 # WEATHER VANE
 
 **What's a weather vane?**
 A revolving pointer to show the direction of the wind, typically mounted on top of a building.
+
+Find out the weather today, next week, or in the next few hours!
+
+## FEATURES
+
+-   Search for cities to display weather
+-   7 quick-access city buttons
+-   Details about Current Weather, Hourly and Weekly forecasts, and Weather Alerts
+-   Fully responsive on tablet & mobile.
+-   Dark & Light theme/mode
+-   Redux state management
+-   Uses OpenWeather API for data fetching
+
+## VISUALS
+
+<div align="center" display='flex' flex-direction='column' > 
+<img width='70%' src="https://raw.githubusercontent.com/coding-Ves/weather-vane/theme/public/Weather-vane.gif" alt="App Screenshot" title="Weather App Screenshot"/>
+   <img width='20%' src="https://raw.githubusercontent.com/coding-Ves/weather-vane/theme/public/weather-vane-dark.gif" alt="App Screenshot" title="Weather App Screenshot"/>
+</div>
+
 
 Find out the weather today, next week, or in the next few hours!
 
@@ -13,7 +37,6 @@ Find out the weather today, next week, or in the next few hours!
 - Dark & Light theme/mode
 - Redux state management
 - Uses OpenWeather API for data fetching
-
 
 ## MAIN TECHNOLOGIES
 
@@ -33,11 +56,16 @@ Find out the weather today, next week, or in the next few hours!
 -   Moment.js - For date & time handling and conversion
 
 ### REDUX STORE STRUCTURE
--- store 
---- currentSelection - Stores the name of the current city and the lon & lat coordinates
---- loading - Stores loading state used for global app loader
---- theme - Stores current theme and updates it for the light/dark mode toggle
---- weather - Stores information received from the OpenWeather API about the passed city coords
+
+-- store
+
+---> currentSelection - Stores the name of the current city and the lon & lat coordinates
+
+---> loading - Stores loading state used for global app loader
+
+---> theme - Stores current theme and updates it for the light/dark mode toggle
+
+---> weather - Stores information received from the OpenWeather API about the passed city coords
 
 
 ### Run the project locally

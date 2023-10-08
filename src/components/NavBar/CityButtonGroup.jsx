@@ -28,7 +28,7 @@ const CityGroupButtons = () => {
                     justifyContent: 'flex-start',
                     position: 'fixed',
                     top: 3,
-                    right: 5,
+                    left: 5,
                     zIndex: 1,
                     margin: 3,
                     backgroundColor: 'rgba(32, 118, 245, 0.44)',

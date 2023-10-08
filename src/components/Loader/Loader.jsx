@@ -31,7 +31,7 @@ const Loader = () => {
 
     return (
         <>
-            <Backdrop open={loading} sx={{ color: '#000', zIndex: 10 }}>
+            <Backdrop open={loading} sx={{ zIndex: 10 }}>
                 <Box
                     sx={{
                         display: 'flex',

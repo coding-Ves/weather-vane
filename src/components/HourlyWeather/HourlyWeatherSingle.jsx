@@ -1,9 +1,20 @@
 import { Box, Card, Divider, Paper, Typography } from '@mui/material';
-import { useSelector } from 'react-redux';
 import { transformHourlyInfo } from '../../helpers/transformWeatherData';
+import { useState, useEffect } from 'react';
+import { useWeatherInfo } from '../../hooks/useWeatherInfo';
 
 const HourlyWeatherSingle = (singleHourDataRaw) => {
-    const weatherInfo = useSelector((state) => state.weatherInfoSlice.value);
+    const weatherInfo = useWeatherInfo();
+    const [iconBGColor, setIconBGColor] = useState();
+
+    useEffect(() => {
+        if (weatherInfo.current.weather[0].icon.slice(2) === 'd') {
+            setIconBGColor('rgba(250, 250, 250, 0.95)');
+        } else {
+            setIconBGColor('rgba(50, 50, 50, 0.95)');
+        }
+    }, [weatherInfo]);
+
     const singleHourData = transformHourlyInfo(
         singleHourDataRaw,
         weatherInfo.timezone_offset
@@ -14,14 +25,16 @@ const HourlyWeatherSingle = (singleHourDataRaw) => {
             sx={{
                 display: 'flex',
                 flexDirection: 'column',
-                width: '300px',
+                width: 'fit-content',
+                height: '300px',
                 borderRadius: '10px',
+                alignItems: 'center',
+                justifyContent: 'center',
                 gap: 1,
                 paddingLeft: 3,
                 paddingRight: 3,
-                backgroundColor: 'rgba(200, 200, 200, 0.3)',
-                color: 'white',
             }}
+            elevation={8}
         >
             <Box
                 sx={{
@@ -33,12 +46,6 @@ const HourlyWeatherSingle = (singleHourDataRaw) => {
             >
                 <Typography variant='h4' sx={{ margin: 1, marginTop: 2 }}>
                     {singleHourData.hour}
-                    <Divider></Divider>
-                </Typography>
-
-                <Typography sx={{ margin: 1 }}>
-                    {singleHourData.date}
-                    <Divider></Divider>
                 </Typography>
 
                 <Card
@@ -47,43 +54,21 @@ const HourlyWeatherSingle = (singleHourDataRaw) => {
                     style={{
                         height: '100px',
                         width: '100px',
-                        margin: 3,
+                        margin: 1,
                         borderRadius: '20px',
-                        backgroundColor: 'rgba(250, 250, 250, 0.95)',
+                        border: `6px solid ${iconBGColor}`,
+                        borderColor: `${iconBGColor}`,
+                        backgroundColor: `${iconBGColor}`,
                     }}
                 />
             </Box>
+            <Typography variant='button' sx={{ fontSize: '12px' }}>
+                {singleHourData.description}
+            </Typography>
             <Divider></Divider>
-            <Typography variant='h4'>{singleHourData.temp} °C</Typography>
-            <Divider></Divider>
-
-            <Typography> {singleHourData.feelsLike} °C</Typography>
-            <Divider></Divider>
-            <Typography>🍃{singleHourData.windspeed} m/s</Typography>
-            <Divider></Divider>
-            <Typography>💨{singleHourData.pressure} hPa</Typography>
-            <Divider></Divider>
-            <Typography>💧{singleHourData.humidity} </Typography>
-            <Divider></Divider>
+            <Typography variant='h5'>{singleHourData.temp} °C</Typography>
         </Paper>
     );
 };
 
 export default HourlyWeatherSingle;
-
-// HourlyWeatherSingle.propTypes = {
-//     singleHourData: PropTypes.shape({
-//         dt: PropTypes.number.isRequired,
-//         temp: PropTypes.number.isRequired,
-//         feels_like: PropTypes.number.isRequired,
-//         clouds: PropTypes.number.isRequired,
-//         pressure: PropTypes.number.isRequired,
-//         wind_speed: PropTypes.number.isRequired,
-//         humidity: PropTypes.number.isRequired,
-//         weather: PropTypes.arrayOf(
-//             PropTypes.shape({
-//                 icon: PropTypes.string.isRequired,
-//             })
-//         ).isRequired,
-//     }).isRequired,
-// };

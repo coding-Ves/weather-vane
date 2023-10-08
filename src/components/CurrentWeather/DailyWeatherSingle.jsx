@@ -1,10 +1,16 @@
+import ArrowDownwardRoundedIcon from '@mui/icons-material/ArrowDownwardRounded';
+import ArrowUpwardRounded from '@mui/icons-material/ArrowUpwardRounded';
+import InfoRoundedIcon from '@mui/icons-material/InfoRounded';
 import { Box, Card, Paper, Tooltip, Typography } from '@mui/material';
 import PropTypes from 'prop-types';
+import { useEffect, useState } from 'react';
 import { transformDailyInfo } from '../../helpers/transformWeatherData';
-import { useSelector } from 'react-redux';
+import { useWeatherInfo } from '../../hooks/useWeatherInfo';
 
 const DailyWeatherSingle = (singleDayRaw) => {
-    const weatherInfo = useSelector((state) => state.weatherInfoSlice.value);
+    const weatherInfo = useWeatherInfo();
+    const [iconBGColor, setIconBGColor] = useState();
+
     const singleDay = transformDailyInfo(
         singleDayRaw,
         weatherInfo.timezone_offset
@@ -16,86 +22,111 @@ const DailyWeatherSingle = (singleDayRaw) => {
         },
     };
 
+    useEffect(() => {
+        if (weatherInfo.current.weather[0].icon.slice(2) === 'd') {
+            setIconBGColor('rgba(250, 250, 250, 0.95)');
+        } else {
+            setIconBGColor('rgba(50, 50, 50, 0.95)');
+        }
+    }, [weatherInfo]);
+
     return (
         <Paper
-            elevation={3}
             sx={{
                 display: 'flex',
-                flexDirection: 'column',
+                flexDirection: 'row',
                 justifyContent: 'start',
-                width: '110px',
+                alignItems: 'center',
                 borderRadius: '10px',
                 gap: 1,
-                paddingLeft: 2,
-                paddingRight: 2,
-                backgroundColor: 'rgba(200, 200, 200, 0.3)',
-                color: 'white',
+                padding: 1,
+                position: 'relative',
             }}
+            elevation={8}
         >
             <Tooltip
                 title={singleDay.extraInfo}
                 PopperProps={customPopperProps}
-                sx={{ position: 'absolute', top: 0, right: 2 }}
             >
-                <Box
+                <InfoRoundedIcon
                     sx={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'center',
-                        position: 'relative',
+                        position: 'absolute',
+                        top: 25,
+                        right: 7,
+                        opacity: '50%',
+                        color: 'rgba(20, 20, 20, 0.6)',
                     }}
-                >
-                    {singleDay.date == singleDay.today ? (
-                        <Typography
-                            variant='h6'
-                            sx={{ fontWeight: 500, marginTop: 2 }}
-                        >
-                            TODAY
-                        </Typography>
-                    ) : singleDay.date == singleDay.tomorrow ? (
-                        <Typography
-                            variant='h6'
-                            sx={{ fontWeight: 500, marginTop: 2 }}
-                        >
-                            TOMORROW
-                        </Typography>
-                    ) : (
-                        <Box sx={{ padding: 3 }}></Box>
-                    )}
-                    <Typography variant='h6'>
-                        {singleDay.dayOfTheWeek}
-                    </Typography>
-                    <Typography variant='button'>{singleDay.date}</Typography>
-
-                    <Card
-                        component='img'
-                        src={singleDay.weatherImage}
-                        style={{
-                            height: '100px',
-                            width: '100px',
-                            marginTop: 5,
-                            borderRadius: '20px',
-                            backgroundColor: 'rgba(250, 250, 250, 0.95)',
-                            padding: 10,
-                        }}
-                    />
-                    <Typography variant='button'>
-                        {singleDay.description}
-                    </Typography>
-                </Box>
-
-                <Box
-                    sx={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'center',
-                        marginBottom: 1,
-                    }}
-                >
-                    <Typography>Low: {singleDay.minTemp} °C</Typography>
-                    <Typography>High: {singleDay.maxTemp} °C</Typography>
-                </Box>
+                />
             </Tooltip>
+            <Box
+                sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                }}
+            >
+                {' '}
+                <Typography variant='h6'>{singleDay.dayOfTheWeek}</Typography>
+                <Typography variant='button'>{singleDay.date}</Typography>
+            </Box>
+
+            <Box
+                sx={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    gap: 2,
+                }}
+            >
+                <Card
+                    component='img'
+                    src={singleDay.weatherImage}
+                    style={{
+                        height: '50px',
+                        width: '50px',
+                        borderRadius: '15px',
+                        backgroundColor: `${iconBGColor}`,
+                        borderColor: `${iconBGColor}`,
+                        border: `4px solid ${iconBGColor}`,
+                        marginLeft: '15px',
+                    }}
+                />
+                <Typography
+                    variant='button'
+                    sx={{
+                        display: {
+                            xs: 'none',
+                            sm: 'none',
+                            md: 'inline-block',
+                            lg: 'inline-block',
+                            xl: 'inline-block',
+                        },
+                    }}
+                >
+                    {singleDay.description}
+                </Typography>
+            </Box>
+
+            <Typography
+                sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    marginLeft: 'auto',
+                }}
+            >
+                <ArrowUpwardRounded sx={{ fontSize: '18px' }} />
+                {singleDay.maxTemp} °C
+            </Typography>
+            <Typography
+                sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    marginRight: '40px',
+                }}
+            >
+                <ArrowDownwardRoundedIcon sx={{ fontSize: '18px' }} />
+                {singleDay.minTemp} °C
+            </Typography>
         </Paper>
     );
 };
